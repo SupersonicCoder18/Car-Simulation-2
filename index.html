@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Car Simulation!
+        </title>
+        <script src = "https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src = "//unpkg.com/aframe-environment-component@1.1.0/dist/aframe-environment-component.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+        <script src="https://recast-api.donmccurdy.com/aframe-inspector-plugin-recast.js"></script>
+        <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v2.2.0/dist/aframe-extras.min.js"></script>
+        <script src="./playerMovement.js"></script>
+        <body>
+            <a-scene id = "scene" inspector-plugin-recast>
+                <a-assets>
+                    <a-asset-item
+                    id = "car"
+                    src = "./car/scene.gltf">
+                    </a-asset-item>
+                    <a-asset-item
+                    id = "collider"
+                    src = "./navmesh.gltf"></a-asset-item>
+                </a-assets>
+                <a-entity id="header" position="0 4 -5"> 
+                    <!-- Title --> <a-entity position="-12 12 -20" text="font: exo2bold; align: center; width: 40; color: black; value: Car Simulation" ></a-entity> 
+                    <!-- Timer --> <a-entity position="20 10 -18"> <a-entity position="-1.5 0.07 0" text="font: aileronsemibold; width: 12; color: black; value: TIME\nREMAINING" ></a-entity> 
+                    <a-entity id="timer" position="-9.8 0.3 0" text="font: exo2bold; align: center; width: 30; color: black; value: 00:00" ></a-entity> 
+                </a-entity>
+                <a-entity id="environment" scale = "0.1 0.1 0.1" environment="preset: egypt; skyType:gradient; lighting:point"></a-entity>
+                
+                <a-entity id="camera-rig" camera="" position="-0.044770463969932575 2 4.83654211547809" wasd-controls="acceleration: 1000" look-controls="" player-movement="carRotation: NaN; carPosition: NaN" rotation="-0.4583662361046586 -1.8334649444186328 0" data-aframe-inspector-original-camera="" movement-controls="constrainToNavmesh: true;">
+                </a-entity>
+                <a-entity id="sportscar" gltf-model="./car/scene.gltf" position="" rotation="0.80729753333933 178.95018927982463 2.696339383885654" scale="0.01 0.01 0.01"></a-entity>
+                <a-entity id="navigation-mesh" gltf-model = "#collider" visible="true" nav-mesh>
+                </a-entity>
+            </a-scene>
+        </body>
+    </head>
+</html>
